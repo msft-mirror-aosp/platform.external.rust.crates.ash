@@ -132,4 +132,8 @@ rust_library {
     rustlibs: [
         "liblibloading",
     ],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.virt",
+    ],
 }
