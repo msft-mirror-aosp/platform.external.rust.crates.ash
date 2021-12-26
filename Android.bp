@@ -37,14 +37,18 @@ license {
     ],
 }
 
-rust_defaults {
-    name: "ash_test_defaults",
+rust_test {
+    name: "ash_test_src_lib",
+    host_supported: true,
     crate_name: "ash",
-    srcs: ["src/lib.rs"],
     cargo_env_compat: true,
     cargo_pkg_version: "0.33.3+1.2.191",
+    srcs: ["src/lib.rs"],
     test_suites: ["general-tests"],
     auto_gen_config: true,
+    test_options: {
+        unit_test: true,
+    },
     edition: "2018",
     features: [
         "default",
@@ -55,21 +59,8 @@ rust_defaults {
     ],
 }
 
-rust_test_host {
-    name: "ash_host_test_src_lib",
-    defaults: ["ash_test_defaults"],
-    test_options: {
-        unit_test: true,
-    },
-}
-
-rust_test {
-    name: "ash_device_test_src_lib",
-    defaults: ["ash_test_defaults"],
-}
-
 rust_defaults {
-    name: "ash_test_defaults_ash",
+    name: "ash_test_defaults",
     crate_name: "ash",
     cargo_env_compat: true,
     cargo_pkg_version: "0.33.3+1.2.191",
@@ -86,9 +77,10 @@ rust_defaults {
     ],
 }
 
-rust_test_host {
-    name: "ash_host_test_tests_constant_size_arrays",
-    defaults: ["ash_test_defaults_ash"],
+rust_test {
+    name: "ash_test_tests_constant_size_arrays",
+    defaults: ["ash_test_defaults"],
+    host_supported: true,
     srcs: ["tests/constant_size_arrays.rs"],
     test_options: {
         unit_test: true,
@@ -96,24 +88,13 @@ rust_test_host {
 }
 
 rust_test {
-    name: "ash_device_test_tests_constant_size_arrays",
-    defaults: ["ash_test_defaults_ash"],
-    srcs: ["tests/constant_size_arrays.rs"],
-}
-
-rust_test_host {
-    name: "ash_host_test_tests_display",
-    defaults: ["ash_test_defaults_ash"],
+    name: "ash_test_tests_display",
+    defaults: ["ash_test_defaults"],
+    host_supported: true,
     srcs: ["tests/display.rs"],
     test_options: {
         unit_test: true,
     },
-}
-
-rust_test {
-    name: "ash_device_test_tests_display",
-    defaults: ["ash_test_defaults_ash"],
-    srcs: ["tests/display.rs"],
 }
 
 rust_library {
