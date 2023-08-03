@@ -39,21 +39,22 @@ license {
 
 rust_test {
     name: "ash_test_src_lib",
-    // has rustc warnings
     host_supported: true,
     crate_name: "ash",
     cargo_env_compat: true,
-    cargo_pkg_version: "0.33.3+1.2.191",
+    cargo_pkg_version: "0.37.3+1.3.251",
     srcs: ["src/lib.rs"],
     test_suites: ["general-tests"],
     auto_gen_config: true,
     test_options: {
         unit_test: true,
     },
-    edition: "2018",
+    edition: "2021",
     features: [
+        "debug",
         "default",
         "libloading",
+        "loaded",
     ],
     rustlibs: [
         "liblibloading",
@@ -64,13 +65,15 @@ rust_defaults {
     name: "ash_test_defaults",
     crate_name: "ash",
     cargo_env_compat: true,
-    cargo_pkg_version: "0.33.3+1.2.191",
+    cargo_pkg_version: "0.37.3+1.3.251",
     test_suites: ["general-tests"],
     auto_gen_config: true,
-    edition: "2018",
+    edition: "2021",
     features: [
+        "debug",
         "default",
         "libloading",
+        "loaded",
     ],
     rustlibs: [
         "libash_rust",
@@ -81,7 +84,6 @@ rust_defaults {
 rust_test {
     name: "ash_test_tests_constant_size_arrays",
     defaults: ["ash_test_defaults"],
-    // has rustc warnings
     host_supported: true,
     srcs: ["tests/constant_size_arrays.rs"],
     test_options: {
@@ -92,7 +94,6 @@ rust_test {
 rust_test {
     name: "ash_test_tests_display",
     defaults: ["ash_test_defaults"],
-    // has rustc warnings
     host_supported: true,
     srcs: ["tests/display.rs"],
     test_options: {
@@ -103,16 +104,17 @@ rust_test {
 rust_library {
     name: "libash_rust",
     stem: "libash",
-    // has rustc warnings
     host_supported: true,
     crate_name: "ash",
     cargo_env_compat: true,
-    cargo_pkg_version: "0.33.3+1.2.191",
+    cargo_pkg_version: "0.37.3+1.3.251",
     srcs: ["src/lib.rs"],
-    edition: "2018",
+    edition: "2021",
     features: [
+        "debug",
         "default",
         "libloading",
+        "loaded",
     ],
     rustlibs: [
         "liblibloading",
