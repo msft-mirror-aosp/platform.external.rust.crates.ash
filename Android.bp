@@ -111,7 +111,6 @@ rust_test {
 
 rust_library {
     name: "libash_rust",
-    stem: "libash",
     host_supported: true,
     crate_name: "ash",
     cargo_env_compat: true,
